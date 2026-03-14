@@ -54,10 +54,6 @@ The PLL generates **four phase-shifted clocks** from the base $50\text{ MHz}$ si
 ### The Analog Front-End (The Voltage Divider)
 [cite_start]Standard Cat-5 cable has a characteristic impedance of $\approx 100 \Omega$[cite: 2]. [cite_start]The FPGA's `tx` pin drives the cable through a physical $100 \Omega$ series termination resistor to prevent secondary reflections and match the impedance[cite: 2].
 
-**The 1.65V Cutoff & Calibration:**
-[cite_start]When the $3.3\text{V}$ FPGA pulse ends, the returning echo creates a voltage divider between the series resistor and the cable, resulting in a $\approx 1.65\text{V}$ "tail"[cite: 1]. Because $1.65\text{V}$ sits below the standard $2.0\text{V}$ LVTTL logic-high threshold of the Cyclone IV, the physical pin truncates the reflection window slightly early. 
-To counteract this analog physics limitation without external comparator ICs, the Verilog DSP pipeline includes a **hardware calibration multiplier** tuned specifically to the cutoff rate (yielding an adjusted $\approx 66\text{ cm}$ effective resolution per count).
-
 ### FPGA Digital Logic (Verilog)
 The RTL is modularized into dedicated silicon blocks:
 1. **Pulse Generator:** Periodically fires a $100\text{ ns}$ pulse into the transmission line.

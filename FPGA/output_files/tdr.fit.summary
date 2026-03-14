@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sun Mar 15 00:35:29 2026
+Quartus Prime Version : 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+Revision Name : tdr
+Top-level Entity Name : tdr
+Family : Cyclone IV E
+Device : EP4CE22F17C6
+Timing Models : Final
+Total logic elements : 1,243 / 22,320 ( 6 % )
+    Total combinational functions : 789 / 22,320 ( 4 % )
+    Dedicated logic registers : 948 / 22,320 ( 4 % )
+Total registers : 948
+Total pins : 40 / 154 ( 26 % )
+Total virtual pins : 0
+Total memory bits : 4,992 / 608,256 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
+Total PLLs : 1 / 4 ( 25 % )

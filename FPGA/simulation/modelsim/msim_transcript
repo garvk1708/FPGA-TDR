@@ -1,0 +1,56 @@
+# do tdr_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying /home/alvin/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+/home/alvin/NAS/Quartus/tdr {/home/alvin/NAS/Quartus/tdr/tdr.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:45:46 on Mar 13,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/alvin/NAS/Quartus/tdr" /home/alvin/NAS/Quartus/tdr/tdr.v 
+# -- Compiling module tdr
+# -- Compiling module pulse_gen
+# -- Compiling module tdc_counter
+# -- Compiling module distance_calc
+# 
+# Top level modules:
+# 	tdr
+# End time: 22:45:46 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+/home/alvin/NAS/Quartus/tdr {/home/alvin/NAS/Quartus/tdr/tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:45:46 on Mar 13,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/alvin/NAS/Quartus/tdr" /home/alvin/NAS/Quartus/tdr/tb.v 
+# -- Compiling module tdr_tb
+# 
+# Top level modules:
+# 	tdr_tb
+# End time: 22:45:46 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  tdr_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" tdr_tb 
+# Start time: 22:45:46 on Mar 13,2026
+# Loading work.tdr_tb
+# Loading work.tdr
+# Loading work.pulse_gen
+# Loading work.tdc_counter
+# Loading work.distance_calc
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# SUCCESS! Calculated Fault Distance:   500 cm
+# ** Note: $finish    : /home/alvin/NAS/Quartus/tdr/tb.v(43)
+#    Time: 510 ns  Iteration: 0  Instance: /tdr_tb
+# End time: 22:46:00 on Mar 13,2026, Elapsed time: 0:00:14
+# Errors: 0, Warnings: 0

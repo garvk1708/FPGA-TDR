@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPGA TDR — Fault Distance</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #f6fff8;
+    background-image:
+      linear-gradient(rgba(0,180,80,0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,80,0.10) 1px, transparent 1px),
+      linear-gradient(rgba(0,180,80,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,80,0.05) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .w { padding: 48px 40px; max-width: 640px; width: 100%; }
+  .label { font-size: 11px; color: #999; letter-spacing: 2px; margin-bottom: 16px; }
+  .dist { font-size: 96px; font-weight: 300; color: #111; line-height: 1; }
+  .unit { font-size: 16px; color: #aaa; margin-top: 8px; margin-bottom: 40px; }
+  svg { overflow: visible; display: block; width: 100%; margin-bottom: 40px; }
+  
+  /* Prediction UI Styles */
+  .prediction-panel { border-top: 1px solid rgba(0,180,80,0.15); padding-top: 36px; }
+  .input-row { display: flex; gap: 16px; margin-bottom: 24px; }
+  .input-group { flex: 1; }
+  .input-group label { display: block; font-size: 11px; color: #999; letter-spacing: 2px; margin-bottom: 8px; }
+  .input-group input { width: 100%; font-family: 'IBM Plex Mono', monospace; background: transparent; border: 1px solid rgba(0,180,80,0.3); padding: 12px; font-size: 14px; color: #333; outline: none; transition: border-color 0.2s; }
+  .input-group input:focus { border-color: rgba(0,180,80,0.8); }
+  button { font-family: 'IBM Plex Mono', monospace; background: transparent; border: 1px solid #111; color: #111; padding: 14px 24px; font-size: 12px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; width: 100%; text-transform: uppercase; }
+  button:hover { background: #111; color: #fff; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .result-box { margin-top: 24px; padding: 16px; background: rgba(0,180,80,0.05); border-left: 3px solid rgba(0,180,80,0.5); font-size: 13px; line-height: 1.5; color: #333; min-height: 60px; display: none; }
+  .divider { border: none; border-top: 1px solid rgba(0,180,80,0.15); margin: 36px 0; }
+  .divider { border: none; border-top: 1px solid rgba(0,180,80,0.15); margin: 36px 0; }
+</style>
+</head>
+<body>
+<div class="w">
+
+  <div class="label">FAULT DISTANCE</div>
+  <div class="dist" id="dist">2.4</div>
+  <div class="unit">metres from origin</div>
+
+  <!-- SCHEMATIC -->
+  <svg id="schematic" viewBox="0 0 560 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="30" width="52" height="40" fill="none" stroke="#555" stroke-width="1.2"/>
+    <text x="26" y="47" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#555">FPGA</text>
+    <text x="26" y="58" text-anchor="middle" font-family="IBM Plex Mono" font-size="6" fill="#888">TDR</text>
+    <line x1="52" y1="50" x2="68" y2="50" stroke="#555" stroke-width="1.2"/>
+    <rect x="68" y="44" width="10" height="12" fill="#ddd" stroke="#888" stroke-width="1"/>
+    <line x1="78" y1="47" x2="490" y2="47" stroke="#333" stroke-width="1.2"/>
+    <line x1="78" y1="53" x2="490" y2="53" stroke="#333" stroke-width="1.2"/>
+    <line x1="78"  y1="43" x2="78"  y2="57" stroke="#aaa" stroke-width="0.8"/>
+    <text x="78"  y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#aaa">0m</text>
+    <line x1="188" y1="43" x2="188" y2="57" stroke="#aaa" stroke-width="0.8"/>
+    <text x="188" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#aaa">1m</text>
+    <line x1="298" y1="43" x2="298" y2="57" stroke="#aaa" stroke-width="0.8"/>
+    <text x="298" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#aaa">2m</text>
+    <line x1="353" y1="43" x2="353" y2="57" stroke="#aaa" stroke-width="0.8"/>
+    <text x="353" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#aaa">3m</text>
+    <line x1="408" y1="43" x2="408" y2="57" stroke="#aaa" stroke-width="0.8"/>
+    <text x="408" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#aaa">4m</text>
+    <line x1="490" y1="43" x2="490" y2="57" stroke="#aaa" stroke-width="0.8"/>
+    <text x="490" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#aaa">5m</text>
+    <line x1="490" y1="44" x2="490" y2="56" stroke="#555" stroke-width="1.5"/>
+    <line x1="494" y1="44" x2="494" y2="56" stroke="#555" stroke-width="1.5"/>
+    <!-- fault -->
+    <line id="fline" x1="275.8" y1="36" x2="275.8" y2="64" stroke="#e24b4a" stroke-width="1" stroke-dasharray="3,2"/>
+    <line id="fx1" x1="270" y1="41" x2="281.6" y2="53" stroke="#e24b4a" stroke-width="1.8" stroke-linecap="round"/>
+    <line id="fx2" x1="281.6" y1="41" x2="270" y2="53" stroke="#e24b4a" stroke-width="1.8" stroke-linecap="round"/>
+    <line id="arrow-line" x1="78" y1="26" x2="275.8" y2="26" stroke="#e24b4a" stroke-width="0.8"/>
+    <polygon id="arrow-head" points="275.8,23 282,26 275.8,29" fill="#e24b4a"/>
+    <line x1="78" y1="23" x2="78" y2="29" stroke="#e24b4a" stroke-width="0.8"/>
+    <text id="flabel" x="176" y="20" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#e24b4a">2.4 m</text>
+    <!-- travelling pulse dot on top wire -->
+    <circle id="pulse-dot" cx="78" cy="47" r="3.5" fill="#2ecc71" opacity="0"/>
+    <!-- reflected dot -->
+    <circle id="refl-dot" cx="78" cy="47" r="3" fill="#e24b4a" opacity="0"/>
+  </svg>
+
+  <!-- PREDICTION PANEL -->
+  <div class="prediction-panel">
+    <div class="label">AI FAULT PREDICTION</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>CABLE AGE (YEARS)</label>
+        <input type="number" id="cable-age" placeholder="e.g. 5" min="0" step="0.1">
+      </div>
+      <div class="input-group">
+        <label>SIGNAL VELOCITY (VF)</label>
+        <input type="number" id="signal-vel" placeholder="e.g. 0.66" min="0" max="1" step="0.01">
+      </div>
+    </div>
+    <button id="predict-btn" onclick="predictFault()">Predict Damage</button>
+    <div id="prediction-result" class="result-box"></div>
+  </div>
+
+</div>
+
+<script>
+  let FAULT_M   = 2.4;
+  const TOTAL_M   = 5.0;
+  let FAULT_PCT = FAULT_M / TOTAL_M;
+
+  // schematic x coords
+  const S_X0 = 78, S_X1 = 490;
+  let S_FAULT_X = S_X0 + FAULT_PCT * (S_X1 - S_X0);
+
+
+  let t = 0; // 0..1 animation progress
+  let phase = 'forward'; // forward | reflect | done
+  let raf;
+
+  const pulseDot = document.getElementById('pulse-dot');
+  const reflDot  = document.getElementById('refl-dot');
+
+  function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  function animate() {
+    t += 0.008;
+    if (t > 1) t = 1;
+
+    const et = easeInOut(t);
+
+    if (phase === 'forward') {
+      // pulse dot travels from S_X0 to S_FAULT_X
+      const px = S_X0 + et * (S_FAULT_X - S_X0);
+      pulseDot.setAttribute('cx', px);
+      pulseDot.setAttribute('opacity', 0.9);
+      reflDot.setAttribute('opacity', 0);
+
+
+      if (t >= 1) { t = 0; phase = 'reflect'; }
+
+    } else if (phase === 'reflect') {
+      // pulse dot travels back from S_FAULT_X to S_X0
+      const px = S_FAULT_X + et * (S_X0 - S_FAULT_X);
+      pulseDot.setAttribute('opacity', 0);
+      reflDot.setAttribute('cx', px);
+      reflDot.setAttribute('cy', 47);
+      reflDot.setAttribute('opacity', 0.9);
+
+
+      if (t >= 1) { t = 0; phase = 'pause'; setTimeout(() => { phase = 'forward'; loop(); }, 800); return; }
+
+    } else if (phase === 'pause') {
+      return;
+    }
+
+    raf = requestAnimationFrame(animate);
+  }
+
+  function loop() { raf = requestAnimationFrame(animate); }
+  loop();
+
+  function updateFault(metres) {
+    document.getElementById('dist').textContent = metres.toFixed(1);
+    const total = 5, x0 = 78, x1 = 490;
+    const fx = x0 + (metres / total) * (x1 - x0);
+    document.getElementById('fline').setAttribute('x1', fx); document.getElementById('fline').setAttribute('x2', fx);
+    document.getElementById('fx1').setAttribute('x1', fx-5.8); document.getElementById('fx1').setAttribute('x2', fx+5.8);
+    document.getElementById('fx2').setAttribute('x1', fx+5.8); document.getElementById('fx2').setAttribute('x2', fx-5.8);
+    document.getElementById('arrow-line').setAttribute('x2', fx);
+    document.getElementById('arrow-head').setAttribute('points', `${fx},23 ${fx+6},26 ${fx},29`);
+    document.getElementById('flabel').setAttribute('x', (x0+fx)/2);
+    document.getElementById('flabel').textContent = metres.toFixed(1) + ' m';
+    
+    // Update animation target
+    FAULT_M = metres;
+    FAULT_PCT = FAULT_M / TOTAL_M;
+    S_FAULT_X = S_X0 + FAULT_PCT * (S_X1 - S_X0);
+  }
+
+  // --- Backend Polling ---
+  async function fetchDistance() {
+    try {
+      const response = await fetch('/api/distance');
+      if (response.ok) {
+        const data = await response.json();
+        // Only update if changed slightly to prevent jitter
+        if (Math.abs(data.distance - FAULT_M) > 0.05) {
+           updateFault(data.distance);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to fetch distance:", err);
+    }
+  }
+
+  // Poll every 2 seconds
+  setInterval(fetchDistance, 2000);
+
+  // --- Gemini Prediction ---
+  async function predictFault() {
+    const age = document.getElementById('cable-age').value;
+    const vel = document.getElementById('signal-vel').value;
+    const btn = document.getElementById('predict-btn');
+    const resBox = document.getElementById('prediction-result');
+
+    if (!age || !vel) {
+      alert("Please enter both Cable Age and Signal Velocity.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "ANALYZING...";
+    resBox.style.display = "block";
+    resBox.textContent = "Requesting AI prediction...";
+
+    try {
+      const response = await fetch('/api/predict-fault', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cableAge: age, signalVelocity: vel })
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        resBox.innerHTML = `<strong>PREDICTION:</strong><br/>${data.prediction}`;
+      } else {
+        resBox.innerHTML = `<strong style="color: #e24b4a;">ERROR:</strong><br/>${data.error}`;
+      }
+    } catch (err) {
+      resBox.innerHTML = `<strong style="color: #e24b4a;">ERROR:</strong><br/>Failed to connect to backend.`;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "PREDICT DAMAGE";
+    }
+  }
+
+  // Initial UI sync
+  updateFault(FAULT_M);
+
+</script>
+</body>
+</html>

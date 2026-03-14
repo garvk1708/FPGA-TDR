@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sun Mar 15 00:35:22 2026
+Quartus Prime Version : 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+Revision Name : tdr
+Top-level Entity Name : tdr
+Family : Cyclone IV E
+Total logic elements : 1,257
+    Total combinational functions : 787
+    Dedicated logic registers : 948
+Total registers : 948
+Total pins : 40
+Total virtual pins : 0
+Total memory bits : 4,992
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1

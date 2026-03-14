@@ -1,0 +1,4 @@
+# OpenFile tb.v
+add wave *
+run -all
+# No Design Loaded!

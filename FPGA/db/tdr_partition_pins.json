@@ -1,0 +1,181 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "tx",
+					"strict" : false
+				},
+				{
+					"name" : "uart_tx",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[3]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[4]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[5]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[6]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[7]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[8]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[9]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[10]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[11]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[12]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[13]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[14]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[15]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[16]",
+					"strict" : false
+				},
+				{
+					"name" : "total_count[17]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[0]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[1]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[2]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[3]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[4]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[5]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[6]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[7]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[8]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[9]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[10]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[11]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[12]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[13]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[14]",
+					"strict" : false
+				},
+				{
+					"name" : "distance_cm[15]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "rx_pin",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tms",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tck",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdi",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdo",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

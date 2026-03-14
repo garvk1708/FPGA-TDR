@@ -1,0 +1,70 @@
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire rx_pin,
+    input wire clk45, input wire clk90, input wire clk135,
+    input wire clk180, input wire clk225, input wire clk270, input wire clk315,
+    output wire tx,
+    output wire [18:0] total_count,
+    output wire [15:0] distance_cm
+);
+
+    reg sync1; reg sync2;
+    wire rx_sync;
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin sync1 <= 1'b0; sync2 <= 1'b0; end 
+        else begin sync1 <= rx_pin; sync2 <= sync1; end
+    end
+    assign rx_sync = sync2;
+
+    pulse_gen pgen (.clk(clk), .reset(reset), .tx(tx));
+
+    tdc_counter tdc (
+        .tx(tx), .rx_sync(rx_sync),
+        .clk0(clk), .clk45(clk45), .clk90(clk90), .clk135(clk135),
+        .clk180(clk180), .clk225(clk225), .clk270(clk270), .clk315(clk315),
+        .reset(reset), .total_count(total_count)
+    );
+
+    distance_calc dcalc (.total_count(total_count), .distance_cm(distance_cm));
+
+endmodule
+
+module pulse_gen(input wire clk, input wire reset, output reg tx);
+    reg [7:0] counter;
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin counter <= 8'd0; tx <= 1'b0; end 
+        else begin
+            counter <= counter + 8'd1;
+            if (counter == 8'd0) tx <= 1'b1;
+            else if (counter == 8'd5) tx <= 1'b0;
+        end
+    end
+endmodule
+
+module tdc_counter(
+    input wire tx, input wire rx_sync,
+    input wire clk0, input wire clk45, input wire clk90, input wire clk135,
+    input wire clk180, input wire clk225, input wire clk270, input wire clk315,
+    input wire reset, output wire [18:0] total_count
+);
+    wire strobe;
+    assign strobe = rx_sync & (~tx); 
+    reg [15:0] c0, c1, c2, c3, c4, c5, c6, c7;
+
+    always @(posedge clk0 or posedge reset)   if(reset) c0 <= 16'd0; else if(strobe) c0 <= c0 + 16'd1;
+    always @(posedge clk45 or posedge reset)  if(reset) c1 <= 16'd0; else if(strobe) c1 <= c1 + 16'd1;
+    always @(posedge clk90 or posedge reset)  if(reset) c2 <= 16'd0; else if(strobe) c2 <= c2 + 16'd1;
+    always @(posedge clk135 or posedge reset) if(reset) c3 <= 16'd0; else if(strobe) c3 <= c3 + 16'd1;
+    always @(posedge clk180 or posedge reset) if(reset) c4 <= 16'd0; else if(strobe) c4 <= c4 + 16'd1;
+    always @(posedge clk225 or posedge reset) if(reset) c5 <= 16'd0; else if(strobe) c5 <= c5 + 16'd1;
+    always @(posedge clk270 or posedge reset) if(reset) c6 <= 16'd0; else if(strobe) c6 <= c6 + 16'd1;
+    always @(posedge clk315 or posedge reset) if(reset) c7 <= 16'd0; else if(strobe) c7 <= c7 + 16'd1;
+
+    assign total_count = c0 + c1 + c2 + c3 + c4 + c5 + c6 + c7; 
+endmodule
+
+module distance_calc(input wire [18:0] total_count, output wire [15:0] distance_cm);
+    assign distance_cm = (total_count * 16'd125) / 16'd10;
+endmodule

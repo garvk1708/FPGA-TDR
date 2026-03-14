@@ -1,0 +1,866 @@
+$date
+	Fri Mar 13 22:45:47 2026
+$end
+$version
+	ModelSim Version 2020.1
+$end
+$timescale
+	1ps
+$end
+
+$scope module tdr_tb $end
+$var reg 1 ! clk $end
+$var reg 1 " reset $end
+$var reg 1 # rx_pin $end
+$var wire 1 $ tx $end
+$var wire 1 % total_count [18] $end
+$var wire 1 & total_count [17] $end
+$var wire 1 ' total_count [16] $end
+$var wire 1 ( total_count [15] $end
+$var wire 1 ) total_count [14] $end
+$var wire 1 * total_count [13] $end
+$var wire 1 + total_count [12] $end
+$var wire 1 , total_count [11] $end
+$var wire 1 - total_count [10] $end
+$var wire 1 . total_count [9] $end
+$var wire 1 / total_count [8] $end
+$var wire 1 0 total_count [7] $end
+$var wire 1 1 total_count [6] $end
+$var wire 1 2 total_count [5] $end
+$var wire 1 3 total_count [4] $end
+$var wire 1 4 total_count [3] $end
+$var wire 1 5 total_count [2] $end
+$var wire 1 6 total_count [1] $end
+$var wire 1 7 total_count [0] $end
+$var wire 1 8 distance_cm [15] $end
+$var wire 1 9 distance_cm [14] $end
+$var wire 1 : distance_cm [13] $end
+$var wire 1 ; distance_cm [12] $end
+$var wire 1 < distance_cm [11] $end
+$var wire 1 = distance_cm [10] $end
+$var wire 1 > distance_cm [9] $end
+$var wire 1 ? distance_cm [8] $end
+$var wire 1 @ distance_cm [7] $end
+$var wire 1 A distance_cm [6] $end
+$var wire 1 B distance_cm [5] $end
+$var wire 1 C distance_cm [4] $end
+$var wire 1 D distance_cm [3] $end
+$var wire 1 E distance_cm [2] $end
+$var wire 1 F distance_cm [1] $end
+$var wire 1 G distance_cm [0] $end
+
+$scope module uut $end
+$var wire 1 H clk $end
+$var wire 1 I reset $end
+$var wire 1 J rx_pin $end
+$var wire 1 K clk45 $end
+$var wire 1 L clk90 $end
+$var wire 1 M clk135 $end
+$var wire 1 N clk180 $end
+$var wire 1 O clk225 $end
+$var wire 1 P clk270 $end
+$var wire 1 Q clk315 $end
+$var wire 1 $ tx $end
+$var wire 1 % total_count [18] $end
+$var wire 1 & total_count [17] $end
+$var wire 1 ' total_count [16] $end
+$var wire 1 ( total_count [15] $end
+$var wire 1 ) total_count [14] $end
+$var wire 1 * total_count [13] $end
+$var wire 1 + total_count [12] $end
+$var wire 1 , total_count [11] $end
+$var wire 1 - total_count [10] $end
+$var wire 1 . total_count [9] $end
+$var wire 1 / total_count [8] $end
+$var wire 1 0 total_count [7] $end
+$var wire 1 1 total_count [6] $end
+$var wire 1 2 total_count [5] $end
+$var wire 1 3 total_count [4] $end
+$var wire 1 4 total_count [3] $end
+$var wire 1 5 total_count [2] $end
+$var wire 1 6 total_count [1] $end
+$var wire 1 7 total_count [0] $end
+$var wire 1 8 distance_cm [15] $end
+$var wire 1 9 distance_cm [14] $end
+$var wire 1 : distance_cm [13] $end
+$var wire 1 ; distance_cm [12] $end
+$var wire 1 < distance_cm [11] $end
+$var wire 1 = distance_cm [10] $end
+$var wire 1 > distance_cm [9] $end
+$var wire 1 ? distance_cm [8] $end
+$var wire 1 @ distance_cm [7] $end
+$var wire 1 A distance_cm [6] $end
+$var wire 1 B distance_cm [5] $end
+$var wire 1 C distance_cm [4] $end
+$var wire 1 D distance_cm [3] $end
+$var wire 1 E distance_cm [2] $end
+$var wire 1 F distance_cm [1] $end
+$var wire 1 G distance_cm [0] $end
+$var reg 1 R sync1 $end
+$var reg 1 S sync2 $end
+$var wire 1 T rx_sync $end
+
+$scope module pgen $end
+$var wire 1 H clk $end
+$var wire 1 I reset $end
+$var reg 1 U tx $end
+$var reg 8 V counter [7:0] $end
+$upscope $end
+
+$scope module tdc $end
+$var wire 1 $ tx $end
+$var wire 1 T rx_sync $end
+$var wire 1 H clk0 $end
+$var wire 1 K clk45 $end
+$var wire 1 L clk90 $end
+$var wire 1 M clk135 $end
+$var wire 1 N clk180 $end
+$var wire 1 O clk225 $end
+$var wire 1 P clk270 $end
+$var wire 1 Q clk315 $end
+$var wire 1 I reset $end
+$var wire 1 % total_count [18] $end
+$var wire 1 & total_count [17] $end
+$var wire 1 ' total_count [16] $end
+$var wire 1 ( total_count [15] $end
+$var wire 1 ) total_count [14] $end
+$var wire 1 * total_count [13] $end
+$var wire 1 + total_count [12] $end
+$var wire 1 , total_count [11] $end
+$var wire 1 - total_count [10] $end
+$var wire 1 . total_count [9] $end
+$var wire 1 / total_count [8] $end
+$var wire 1 0 total_count [7] $end
+$var wire 1 1 total_count [6] $end
+$var wire 1 2 total_count [5] $end
+$var wire 1 3 total_count [4] $end
+$var wire 1 4 total_count [3] $end
+$var wire 1 5 total_count [2] $end
+$var wire 1 6 total_count [1] $end
+$var wire 1 7 total_count [0] $end
+$var wire 1 W strobe $end
+$var reg 16 X c0 [15:0] $end
+$var reg 16 Y c1 [15:0] $end
+$var reg 16 Z c2 [15:0] $end
+$var reg 16 [ c3 [15:0] $end
+$var reg 16 \ c4 [15:0] $end
+$var reg 16 ] c5 [15:0] $end
+$var reg 16 ^ c6 [15:0] $end
+$var reg 16 _ c7 [15:0] $end
+$upscope $end
+
+$scope module dcalc $end
+$var wire 1 % total_count [18] $end
+$var wire 1 & total_count [17] $end
+$var wire 1 ' total_count [16] $end
+$var wire 1 ( total_count [15] $end
+$var wire 1 ) total_count [14] $end
+$var wire 1 * total_count [13] $end
+$var wire 1 + total_count [12] $end
+$var wire 1 , total_count [11] $end
+$var wire 1 - total_count [10] $end
+$var wire 1 . total_count [9] $end
+$var wire 1 / total_count [8] $end
+$var wire 1 0 total_count [7] $end
+$var wire 1 1 total_count [6] $end
+$var wire 1 2 total_count [5] $end
+$var wire 1 3 total_count [4] $end
+$var wire 1 4 total_count [3] $end
+$var wire 1 5 total_count [2] $end
+$var wire 1 6 total_count [1] $end
+$var wire 1 7 total_count [0] $end
+$var wire 1 8 distance_cm [15] $end
+$var wire 1 9 distance_cm [14] $end
+$var wire 1 : distance_cm [13] $end
+$var wire 1 ; distance_cm [12] $end
+$var wire 1 < distance_cm [11] $end
+$var wire 1 = distance_cm [10] $end
+$var wire 1 > distance_cm [9] $end
+$var wire 1 ? distance_cm [8] $end
+$var wire 1 @ distance_cm [7] $end
+$var wire 1 A distance_cm [6] $end
+$var wire 1 B distance_cm [5] $end
+$var wire 1 C distance_cm [4] $end
+$var wire 1 D distance_cm [3] $end
+$var wire 1 E distance_cm [2] $end
+$var wire 1 F distance_cm [1] $end
+$var wire 1 G distance_cm [0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+0R
+0S
+0U
+b0 V
+b0 X
+b0 Y
+b0 Z
+b0 [
+b0 \
+b0 ]
+b0 ^
+b0 _
+0$
+07
+06
+05
+04
+03
+02
+01
+00
+0/
+0.
+0-
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0G
+0F
+0E
+0D
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0<
+0;
+0:
+09
+08
+0T
+0W
+0Q
+0P
+0O
+0N
+0M
+0L
+0K
+0J
+1I
+0H
+$end
+#10000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+#20000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#30000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+#40000
+0"
+0!
+0I
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#50000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b1 V
+1U
+1$
+#60000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#70000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10 V
+#80000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#90000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b11 V
+#100000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#110000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b100 V
+#120000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#130000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b101 V
+#140000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#150000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b110 V
+0U
+0$
+#160000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#170000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b111 V
+#180000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#190000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b1000 V
+#200000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#210000
+1#
+1!
+1J
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+1R
+b1001 V
+#220000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#230000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+1S
+b1010 V
+1T
+1W
+#240000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#250000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b1 _
+b1 ^
+b1 ]
+b1 \
+b1 [
+b1 Z
+b1 Y
+b1011 V
+b1 X
+14
+1E
+1B
+1A
+#260000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#270000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10 _
+b10 ^
+b10 ]
+b10 \
+b10 [
+b10 Z
+b10 Y
+b1100 V
+b10 X
+04
+13
+0E
+1D
+0B
+1@
+#280000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#290000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b11 _
+b11 ^
+b11 ]
+b11 \
+b11 [
+b11 Z
+b11 Y
+b1101 V
+b11 X
+14
+1E
+1B
+0A
+0@
+1?
+#300000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#310000
+0#
+1!
+0J
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b100 _
+b100 ^
+b100 ]
+b100 \
+b100 [
+b100 Z
+b100 Y
+0R
+b1110 V
+b100 X
+04
+03
+12
+0E
+0D
+1C
+0B
+1@
+#320000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#330000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b101 _
+b101 ^
+b101 ]
+b101 \
+b101 [
+b101 Z
+b101 Y
+0S
+b1111 V
+b101 X
+14
+0T
+0W
+1E
+1B
+1A
+#340000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#350000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10000 V
+#360000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#370000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10001 V
+#380000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#390000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10010 V
+#400000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#410000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10011 V
+#420000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#430000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10100 V
+#440000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#450000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10101 V
+#460000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#470000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10110 V
+#480000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+#490000
+1!
+1H
+1K
+1L
+1M
+1N
+1O
+1P
+1Q
+b10111 V
+#500000
+0!
+0H
+0K
+0L
+0M
+0N
+0O
+0P
+0Q

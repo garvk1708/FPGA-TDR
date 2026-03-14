@@ -1,0 +1,45 @@
+`timescale 1ns/1ps
+
+module tdr_tb;
+    reg clk;
+    reg reset;
+    reg rx_pin;
+
+    wire tx;
+    wire [18:0] total_count;
+    wire [15:0] distance_cm;
+
+    // Instantiate your module
+    tdr uut (
+        .clk(clk), .reset(reset), .rx_pin(rx_pin),
+        // Binding all phase clocks to main clk just for functional simulation
+        .clk45(clk), .clk90(clk), .clk135(clk), .clk180(clk),
+        .clk225(clk), .clk270(clk), .clk315(clk),
+        .tx(tx), .total_count(total_count), .distance_cm(distance_cm)
+    );
+
+    // 50 MHz Clock
+    always #10 clk = ~clk;
+
+    initial begin
+        // This generates the visual waveform!
+        $dumpfile("dump.vcd");
+        $dumpvars(0, tdr_tb);
+        
+        clk = 0; reset = 1; rx_pin = 0;
+
+        #40 reset = 0; 
+        
+        // Wait for the TX pulse to fire
+        wait(tx == 1);
+        wait(tx == 0);
+
+        // Simulate a reflection returning 60ns after TX ends
+        #60 rx_pin = 1; 
+        #100 rx_pin = 0; 
+
+        #200;
+        $display("SUCCESS! Calculated Fault Distance: %d cm", distance_cm);
+        $finish;
+    end
+endmodule

@@ -1,0 +1,131 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/alvin/NAS/Quartus/tdr/simulation/modelsim
+vdistance_calc
+Z1 !s110 1773422146
+!i10b 1
+!s100 Wl65b[X@1LWe@O10]0dj21
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I0N4J=o6G?5j2gcS<K961;1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1773420716
+Z5 8/home/alvin/NAS/Quartus/tdr/tdr.v
+Z6 F/home/alvin/NAS/Quartus/tdr/tdr.v
+!i122 0
+L0 68 3
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1773422146.000000
+Z9 !s107 /home/alvin/NAS/Quartus/tdr/tdr.v|
+Z10 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/alvin/NAS/Quartus/tdr|/home/alvin/NAS/Quartus/tdr/tdr.v|
+!i113 1
+Z11 o-vlog01compat -work work
+Z12 !s92 -vlog01compat -work work +incdir+/home/alvin/NAS/Quartus/tdr
+Z13 tCvgOpt 0
+vpulse_gen
+R1
+!i10b 1
+!s100 <e5f>l8_DQn:8fG[6A<QT3
+R2
+IhS5D@cdS5?<6Midm[kz_^3
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 34 11
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+vtdc_counter
+R1
+!i10b 1
+!s100 `n?U1;jb7hOZmS@JKX_k92
+R2
+Ij`kH;4WOg?VU=YDQ:VdDl1
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 46 21
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+vtdr
+R1
+!i10b 1
+!s100 NRF_e[o5UF7V0?YQ6f;ND0
+R2
+IM<3h4mD0f4zOAHGJ5fZNQ2
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 1 32
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+vtdr_tb
+R1
+!i10b 1
+!s100 ZSB]U4lcV:b_0JNJ?E8:I0
+R2
+IOCDG?Cb6i;e1]lIGYUIOb0
+R3
+R0
+w1773421230
+8/home/alvin/NAS/Quartus/tdr/tb.v
+F/home/alvin/NAS/Quartus/tdr/tb.v
+!i122 1
+L0 3 43
+R7
+r1
+!s85 0
+31
+R8
+!s107 /home/alvin/NAS/Quartus/tdr/tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/alvin/NAS/Quartus/tdr|/home/alvin/NAS/Quartus/tdr/tb.v|
+!i113 1
+R11
+R12
+R13

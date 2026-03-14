@@ -19,7 +19,7 @@ An end-to-end, hardware-accelerated Time Domain Reflectometer (TDR) built from s
 
 ---
 
-## 🚀 Project Overview
+##  Project Overview
 
 [cite_start]This project implements a Time-to-Digital Converter (TDC) architecture to measure the "time of flight" of electrical reflections in a Cat-5 twisted pair cable[cite: 2]. By tracking the exact nanosecond a transmitted pulse echoes back from a cut or short, the system computes the exact distance to the fault. 
 
@@ -27,7 +27,7 @@ The distance is transmitted via a custom-built hardware UART to an ESP8266, whic
 
 ---
 
-## 🧠 Core Technologies & Concepts
+##  Core Technologies & Concepts
 
 ### What is TDR?
 Time Domain Reflectometry (TDR) acts like radar for cables. It injects a sharp voltage pulse down a transmission line. Whenever the pulse hits an impedance mismatch (like a severed wire or a short circuit), a portion of that energy reflects back to the source. By measuring the time ($\Delta t$) it takes for the echo to return, and knowing the velocity of propagation ($v$) in the cable, the distance ($d$) to the fault is calculated:
@@ -49,7 +49,7 @@ By running four parallel counters driven by these offset clocks, we effectively 
 
 ---
 
-## ⚙️ Hardware Architecture
+##  Hardware Architecture
 
 ### The Analog Front-End (The Voltage Divider)
 Standard Cat-5 cable has a characteristic impedance of $\approx 100 \Omega$[cite: 2]. The FPGA's `tx` pin drives the cable through a physical $100 \Omega$ series termination resistor to prevent secondary reflections and match the impedance.
@@ -64,7 +64,7 @@ The RTL is modularized into dedicated silicon blocks:
 
 ---
 
-## 🌐 IoT & AI Integration
+##  IoT & AI Integration
 
 The system isn't just an edge sensor; it's a fully connected diagnostic hub.
 * **ESP8266 Serial Parsing:** The microcontroller continuously buffers the raw UART stream from the FPGA, reconstructing the High/Low bytes into integers.
@@ -73,7 +73,7 @@ The system isn't just an edge sensor; it's a fully connected diagnostic hub.
 
 ---
 
-## 🔌 Wiring & Setup Guide
+##  Wiring & Setup Guide
 
 ### 1. Physical Connections
 | Component | FPGA Pin (Cyclone IV E) | Target |

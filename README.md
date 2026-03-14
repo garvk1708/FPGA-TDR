@@ -30,14 +30,14 @@ The distance is transmitted via a custom-built hardware UART to an ESP8266, whic
 ## 🧠 Core Technologies & Concepts
 
 ### What is TDR?
-[cite_start]Time Domain Reflectometry (TDR) acts like radar for cables[cite: 2]. It injects a sharp voltage pulse down a transmission line. [cite_start]Whenever the pulse hits an impedance mismatch (like a severed wire or a short circuit), a portion of that energy reflects back to the source[cite: 2]. By measuring the time ($\Delta t$) it takes for the echo to return, and knowing the velocity of propagation ($v$) in the cable, the distance ($d$) to the fault is calculated:
+Time Domain Reflectometry (TDR) acts like radar for cables. It injects a sharp voltage pulse down a transmission line. Whenever the pulse hits an impedance mismatch (like a severed wire or a short circuit), a portion of that energy reflects back to the source. By measuring the time ($\Delta t$) it takes for the echo to return, and knowing the velocity of propagation ($v$) in the cable, the distance ($d$) to the fault is calculated:
 $$d = \frac{v \cdot \Delta t}{2}$$
 
 ### Why FPGA?
 Microcontrollers process instructions sequentially, making it impossible to guarantee exact nanosecond timing for high-speed signal capture. An FPGA (Field Programmable Gate Array) allows us to design custom, parallel silicon circuits. This guarantees absolute determinism—our counters never miss a clock cycle while waiting for an interrupt, allowing us to catch reflections traveling at $200,000,000 \text{ meters/second}$ ($20 \text{ cm/ns}$).
 
 ### Sub-Cycle Resolution via PLL (Phase-Locked Loop)
-A standard $50\text{ MHz}$ clock has a period of $20\text{ ns}$—far too slow for accurate TDR, as $20\text{ ns}$ equals $2\text{ meters}$ of blind spot. [cite_start]To achieve high-resolution timing without requiring a multi-GHz processor[cite: 1], this project exploits the Cyclone IV's hardware **ALTPLL**. 
+A standard $50\text{ MHz}$ clock has a period of $20\text{ ns}$—far too slow for accurate TDR, as $20\text{ ns}$ equals $2\text{ meters}$ of blind spot. To achieve high-resolution timing without requiring a multi-GHz processor, this project exploits the Cyclone IV's hardware **ALTPLL**. 
 
 The PLL generates **four phase-shifted clocks** from the base $50\text{ MHz}$ signal:
 * `clk0` (0°)
@@ -45,14 +45,14 @@ The PLL generates **four phase-shifted clocks** from the base $50\text{ MHz}$ si
 * `clk180` (180°)
 * `clk270` (270°)
 
-[cite_start]By running four parallel counters driven by these offset clocks, we effectively divide the $20\text{ ns}$ period by 4. This creates a multi-phase Time-to-Digital Converter (TDC) with an effective sampling rate of **200 MHz**, giving us a precise **$5\text{ ns}$ temporal resolution**[cite: 2].
+By running four parallel counters driven by these offset clocks, we effectively divide the $20\text{ ns}$ period by 4. This creates a multi-phase Time-to-Digital Converter (TDC) with an effective sampling rate of **200 MHz**, giving us a precise **$5\text{ ns}$ temporal resolution**.
 
 ---
 
 ## ⚙️ Hardware Architecture
 
 ### The Analog Front-End (The Voltage Divider)
-[cite_start]Standard Cat-5 cable has a characteristic impedance of $\approx 100 \Omega$[cite: 2]. [cite_start]The FPGA's `tx` pin drives the cable through a physical $100 \Omega$ series termination resistor to prevent secondary reflections and match the impedance[cite: 2].
+Standard Cat-5 cable has a characteristic impedance of $\approx 100 \Omega$[cite: 2]. The FPGA's `tx` pin drives the cable through a physical $100 \Omega$ series termination resistor to prevent secondary reflections and match the impedance.
 
 ### FPGA Digital Logic (Verilog)
 The RTL is modularized into dedicated silicon blocks:
@@ -98,7 +98,16 @@ The system isn't just an edge sensor; it's a fully connected diagnostic hub.
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Authors
 **Garv Kapoor** B.Tech in Electronics and Communication Engineering (ECE)  
-NIT Hamirpur  
-*Passionate about VLSI, Embedded Systems, and bridging raw hardware with modern software stacks.*
+NIT Hamirpur
+
+**Kritika Bhandari** B.Tech in Electronics and Communication Engineering (ECE)  
+NIT Hamirpur
+
+**Shranya Thakur** B.Tech in Electronics and Communication Engineering (ECE)  
+NIT Hamirpur
+
+**Shubham Pathak** B.Tech in Electronics and Communication Engineering (ECE)  
+NIT Hamirpur
+
